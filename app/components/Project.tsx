@@ -122,7 +122,9 @@ export default function ProjectView({
         <h3 className="my-2 font-bold underline">Products:</h3>
         <div dangerouslySetInnerHTML={{ __html: project.products ?? "" }} />
         <h3 className="my-2 font-bold underline">Beneficiaries:</h3>
-        <div dangerouslySetInnerHTML={{ __html: project.goals ?? "" }} />
+        <div
+          dangerouslySetInnerHTML={{ __html: project.beneficiaries ?? "" }}
+        />
         <h3 className="my-2 font-bold underline">Project Cost and Funding:</h3>
         <table className="w-full border-y-2 border-black">
           <thead>
