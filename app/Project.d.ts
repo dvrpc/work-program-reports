@@ -13,6 +13,11 @@ export interface Project {
   tasks: string | null;
   products: string | null;
   beneficiaries: string | null;
+  highlightfund:
+    | "No"
+    | "Funding Table Only"
+    | "Funding Notes Only"
+    | "Both Funding Table and Notes";
   fundingnote: string | null;
   funding_details: string | null;
   lrpimages: string | null;

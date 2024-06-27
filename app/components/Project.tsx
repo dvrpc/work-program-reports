@@ -141,7 +141,15 @@ export default function ProjectView({
             {(JSON.parse(project.funding_details ?? "[]") as FundingDetails[])
               .sort((a, b) => a.fy - b.fy)
               .map((row) => (
-                <tr key={row.fy + row.total} className="border-y border-black">
+                <tr
+                  key={row.fy + row.total}
+                  className={
+                    project.highlightfund === "Funding Table Only" ||
+                    project.highlightfund === "Both Funding Table and Notes"
+                      ? "bg-yellow-500 border-y border-black"
+                      : "border-y border-black"
+                  }
+                >
                   <td className="text-left pt-1">{row.fy}</td>
                   <td className="text-center pt-1">
                     {row.total && USDollar.format(+row.total)}
@@ -165,7 +173,15 @@ export default function ProjectView({
         {project.fundingnote && (
           <>
             <p>{year} Other Funding Details:</p>
-            <p dangerouslySetInnerHTML={{ __html: project.fundingnote }} />
+            <p
+              dangerouslySetInnerHTML={{ __html: project.fundingnote }}
+              className={
+                project.highlightfund === "Funding Notes Only" ||
+                project.highlightfund === "Both Funding Table and Notes"
+                  ? "bg-yellow-500"
+                  : ""
+              }
+            />
           </>
         )}
       </article>
