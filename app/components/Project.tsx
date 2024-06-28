@@ -18,7 +18,13 @@ import SVG_4b from "~/images/4b.svg";
 import SVG_4c from "~/images/4c.svg";
 import SVG_4d from "~/images/4d.svg";
 import SVG_4e from "~/images/4e.svg";
-import type { Project, FundingDetails, LRPImages, Amendment } from "~/Project";
+import {
+  type Project,
+  type FundingDetails,
+  type LRPImages,
+  type Amendment,
+  HighlightFund,
+} from "~/Project";
 import { useAppContext } from "~/root";
 
 const images: Record<string, string> = {
@@ -144,8 +150,10 @@ export default function ProjectView({
                 <tr
                   key={row.fy + row.total}
                   className={
-                    project.highlightfund === "Funding Table Only" ||
-                    project.highlightfund === "Both Funding Table and Notes"
+                    "highlightfund" in project &&
+                    [HighlightFund.Both, HighlightFund.Table].some(
+                      (i) => i === project.highlightfund
+                    )
                       ? "bg-yellow-500 border-y border-black"
                       : "border-y border-black"
                   }
@@ -176,8 +184,10 @@ export default function ProjectView({
             <p
               dangerouslySetInnerHTML={{ __html: project.fundingnote }}
               className={
-                project.highlightfund === "Funding Notes Only" ||
-                project.highlightfund === "Both Funding Table and Notes"
+                "highlightfund" in project &&
+                [HighlightFund.Both, HighlightFund.Notes].some(
+                  (i) => i === project.highlightfund
+                )
                   ? "bg-yellow-500"
                   : ""
               }

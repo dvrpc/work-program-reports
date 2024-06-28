@@ -9,7 +9,9 @@ import {
 } from "@remix-run/react";
 import "./tailwind.css";
 
-type AppContext = { [key: string]: any };
+const context: Partial<{ year: string }> = {
+  year: "FY2025",
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -30,13 +32,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  const [appContext] = React.useState<AppContext>({
-    year: "FY2025",
-  });
+  const [appContext] = React.useState(context);
 
-  return <Outlet context={{ appContext } satisfies AppContext} />;
+  return <Outlet context={appContext} />;
 }
 
 export function useAppContext() {
-  return useOutletContext<AppContext>();
+  return useOutletContext<typeof context>();
 }

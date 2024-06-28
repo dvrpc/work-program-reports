@@ -1,4 +1,3 @@
-import * as React from "react";
 import Project from "~/components/Project";
 import type { Project as ProjectType } from "~/Project";
 import type { LoaderFunctionArgs } from "@remix-run/node";

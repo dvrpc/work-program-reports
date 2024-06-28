@@ -13,21 +13,25 @@ export interface Project {
   tasks: string | null;
   products: string | null;
   beneficiaries: string | null;
-  highlightfund:
-    | "No"
-    | "Funding Table Only"
-    | "Funding Notes Only"
-    | "Both Funding Table and Notes";
   fundingnote: string | null;
   funding_details: string | null;
   lrpimages: string | null;
 }
 
+export const HighlightFund = {
+  No: "No",
+  Table: "Funding Table Only",
+  Notes: "Funding Notes Only",
+  Both: "Both Funding Table and Notes",
+} as const;
+export type HighlightFund = (typeof HighlightFund)[keyof typeof HighlightFund];
+
 export interface Amendment extends Project {
   amendmentid: number;
+  highlightfund: HighlightFund;
 }
 
-type FundingDetails = {
+export type FundingDetails = {
   fy: number;
   total: number;
   highway: number | null;
@@ -36,7 +40,7 @@ type FundingDetails = {
   other: number | null;
 };
 
-type LRPImages = {
+export type LRPImages = {
   lrpImage1: string | null;
   lrpImage2: string | null;
   lrpImage3: string | null;
