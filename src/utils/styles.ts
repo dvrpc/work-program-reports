@@ -1,32 +1,43 @@
 import { Font, StyleSheet } from "@react-pdf/renderer";
+import fontUrl from "src/images/calibri.ttf";
+import fontBoldUrl from "src/images/calibrib.ttf";
 
 export const cssVars = {
-  fontFamily: "Roboto",
+  fontFamily: "Calibri",
 };
 
-Font.register({
-  family: "Roboto",
-  src: "https://fonts.gstatic.com/s/roboto/v19/KFOmCnqEu92Fr1Mu4mxPKTU1Kg.ttf",
+Font.registerHyphenationCallback((word) => {
+  // Return the entire word as a single part
+  return [word];
 });
 
 Font.register({
-  family: "Roboto-Bold",
-  src: "https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOKCWcynf_cDxXwCLxiixG1c.ttf",
+  family: "Calibri",
+  src: fontUrl,
 });
 
 Font.register({
-  family: "Roboto",
+  family: "Calibri-Bold",
+  src: fontBoldUrl,
+});
+
+Font.register({
+  family: "Calibri",
   fontStyle: "italic",
-  src: "https://fonts.gstatic.com/s/roboto/v15/W4wDsBUluyw0tK3tykhXEfesZW2xOQ-xsNqO47m55DA.ttf",
+  src: fontUrl,
 });
 
 const styles = StyleSheet.create({
   absolute: { position: "absolute" },
-  "border-b": { borderBottom: "1px solid black" },
-  "border-b-[3px]": { borderBottom: "3px solid black" },
+  "border-b": { borderBottom: "1pt solid black" },
+  "border-b-[2px]": { borderBottom: "2px solid black" },
   "border-black": { borderColor: "black" },
-  "border-t": { borderTop: "1px solid black" },
-  "border-y": { borderBottomStyle: "solid", borderTopStyle: "solid" },
+  "border-[#7d7d7d]": { borderColor: "#7d7d7d" },
+  "border-t": { borderTop: "0.5px solid black" },
+  "border-y": {
+    borderTop: "0.5px solid black",
+    borderBottom: "0.5px solid black",
+  },
   "border-y-2": { borderBottomWidth: 2, borderTopWidth: 2 },
   "bg-yellow-500": { backgroundColor: "#EAB308" },
   "bottom-0": { bottom: 0 },
@@ -44,20 +55,25 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   italic: { fontStyle: "italic" },
+  "leading-none": { lineHeight: 1 },
   "leading-normal": { lineHeight: 1.5 },
   "m-2": { margin: 8 },
+  "mb-0.5": { marginBottom: 2 },
   "mb-2": { marginBottom: 8 },
   "ml-4": { marginBottom: 16 },
   "ml-8": { marginLeft: 32 },
+  "mt-0.5": { marginTop: 2 },
   "mt-1": { marginTop: 4 },
   "mt-2": { marginTop: 8 },
   "my-2": { marginBottom: 8, marginTop: 8 },
   "p-2": { padding: 8 },
+  "pb-1": { paddingBottom: 4 },
   "pb-2": { paddingBottom: 8 },
   "pl-2": { paddingLeft: 8 },
   "pr-8": { paddingRight: 32 },
   "pt-1": { paddingTop: 4 },
   "pt-2": { paddingTop: 8 },
+  "right-0": { right: 0 },
   "text-base": { fontSize: "11pt" },
   "text-center": { textAlign: "center" },
   "text-lg": { fontSize: "12pt" },
@@ -73,6 +89,7 @@ export function css(strings: TemplateStringsArray): object {
   strings
     .join(" ")
     .split(" ")
+    .filter(Boolean)
     .forEach((className) => {
       if (className in styles) {
         style = { ...style, ...styles[className as keyof typeof styles] };

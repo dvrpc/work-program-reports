@@ -3,6 +3,7 @@ import MonthlyReport, { MonthlyReportLoader } from "./routes/monthlyreport";
 import ProjectRoute, { ProjectRouteLoader } from "./routes/project";
 import Root from "./routes/root";
 import ChapterRoute, { ChapterLoader } from "./routes/chapter";
+import TocRoute from "./routes/toc";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         path: ":yr/chapter",
         element: <ChapterRoute />,
         loader: ChapterLoader,
+      },
+      {
+        path: "toc",
+        element: <TocRoute />,
       },
     ],
   },

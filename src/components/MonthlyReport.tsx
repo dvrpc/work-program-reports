@@ -37,17 +37,9 @@ function MonthlyReport(
       <Text style={css`font-bold`}>
         {props.month} {props.year}:
       </Text>
-      <Description monthlyreport={props.monthlyreport} />
+      <View style={{ marginLeft: 16 }}>{parse(props.monthlyreport)}</View>
     </View>
   );
-}
-
-function Description({
-  monthlyreport,
-}: {
-  monthlyreport: MonthlyReportProps["monthlyreport"];
-}) {
-  return <View style={{ marginLeft: 16 }}>{parse(monthlyreport)}</View>;
 }
 
 export default MonthlyReport;

@@ -1,8 +1,4 @@
-import {
-  Document,
-  Page,
-  PDFDownloadLink,
-} from "@react-pdf/renderer";
+import { Document, Page, PDFDownloadLink } from "@react-pdf/renderer";
 import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import Footer from "src/components/Footer";
 import ProjectView from "src/components/Project";
@@ -25,7 +21,7 @@ export default function ProjectRoute() {
 
   return data?.items?.length ? (
     <>
-      <h1 className="border-b-[3px] border-black font-bold">
+      <h1 className="border-b-[2px] border-black font-bold">
         {data.items[0].proid}: {data.items[0].proname}
       </h1>
       <dl className="grid grid-cols-[auto_1fr] gap-x-4">
